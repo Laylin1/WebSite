@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умная система управления</title>
+    <link rel="stylesheet" href="static/Style.css">
+    <script src="{{ url_for('static', filename='Scripts.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Умная система управления</h1>
+    </header>
+
+    <div class="container">
+        <div id="sensors" class="section">
+            <h2>Данные с датчиков</h2>
+            <div>Температура: <span id="temperature">0</span>°C</div>
+            <div>Освещенность: <span id="light">0</span> %</div>
+            <div>Шум: <span id="noise">0</span> %</div>
+            <div>CO2: <span id="co2">0</span> %</div>
+        </div>
+
+        <div id="thresholds" class="section">
+            <h2>Пороговые значения</h2>
+            <label for="temp-threshold">Температура: </label><br>
+            <input type="number" id="temp-threshold" name="fname">
+            <input class="ButtonPoData" type="submit" value="Установить" onclick="sendTtemp()">
+
+            <br>
+            <label for="light-threshold">Освещенность: </label><br>
+            <input type="number" id="light-threshold" name="light">
+            <input class="ButtonPoData" type="submit" value="Установить" onclick="sendTlight()">
+            <br>
+            
+            <label for="noise-threshold">Шум: </label><br>
+            <input type="number" id="noise-threshold" name="noise">
+            <input class="ButtonPoData" type="submit" value="Установить" onclick="sendTnoise()">
+            <br>
+            <label for="co2-threshold">CO2: </label><br>
+            <input type="number" id="co2-threshold" name="co2">
+            <input class="ButtonPoData" type="submit" value="Установить" onclick="sendTco2()">
+        </div>
+
+        <div id="priority" class="section">
+            <h2>Приоритет выполнения действий</h2>
+            <label for="temp-priority">Температура: </label>
+            <select id="temp-priority">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br>
+            <label for="noise-priority">Шум: </label>
+            <select id="noise-priority">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br>
+            <label for="co2-priority">CO2: </label>
+            <select id="co2-priority">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <button onclick="setPriority()">Установить приоритеты</button>
+        </div>
+
+        <div id="controls" class="section">
+            <h2>Управление</h2>
+            <div class="control-buttons">
+                <div class="control-left">
+                    <button class="buttonLight" onclick="toggleDevice('light_on')">Включить свет</button>
+                    <button class="buttonLight" onclick="toggleDevice('light_off')">Выключить свет</button>
+                </div>
+                <div class="control-center">
+                    <button class="buttonCurtains" onclick="toggleDevice('curtains_on')">Открыть шторы</button>
+                    <button class="buttonCurtains" onclick="toggleDevice('curtains_off')">Закрыть шторы</button>
+                </div>
+                <div class="control-right">
+                    <button class="buttonWindow" onclick="toggleDevice('window_open')">Открыть окно</button>
+                    <button class="buttonWindow" onclick="toggleDevice('window_close')">Закрыть окно</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
